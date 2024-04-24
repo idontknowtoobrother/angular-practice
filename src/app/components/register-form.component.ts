@@ -10,19 +10,30 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     styleUrls: ['./register-form.component.css']
 })
 export default class RegisterFormComponent implements OnInit {
-    fb = inject(FormBuilder)
+    constructor(
+        private apiService: ApiService,
+        private fb: FormBuilder
+    ) { }
+
     registerForm !: FormGroup
 
     ngOnInit(): void {
         this.registerForm = this.fb.group({
-            firstName: ['', Validators.required],
-            middleName: [''],
-            lastName: ['', Validators.required],
-            phoneNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-            email: ['', Validators.compose([Validators.required, Validators.email])],
-            password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-            confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
-        })
+            firstName: new FormControl('', Validators.required),
+            middleName: new FormControl(''),
+            lastName: new FormControl('', Validators.required),
+            phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+            email: new FormControl('', [Validators.required, Validators.email]),
+            password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+            confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
+        },
+            {
+                validators: [
+                    strongPasswordValidator('password'),
+                    confirmPasswordValidator('password', 'confirmPassword'),
+                    thaiPhoneValidator('phoneNumber')
+                ]
+            });
     }
 
 
