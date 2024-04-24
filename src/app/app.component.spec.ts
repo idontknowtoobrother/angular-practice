@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'regiset-form-tailwindcss' title`, () => {
+  it(`should have the 'register-from-tailwindcss' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('regiset-form-tailwindcss');
+    expect(app.title).toEqual('register-from-tailwindcss');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, regiset-form-tailwindcss');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, register-from-tailwindcss');
   });
 });
