@@ -1,6 +1,16 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
+// Custom Validators
+import { 
+    confirmPasswordValidator, 
+    strongPasswordValidator
+} from '../validators/password.validator';
+import { thaiPhoneValidator } from '../validators/identity.validator';
+
+// Services
+import { ApiService } from '../services/api.service';
 
 @Component({
     standalone: true,
@@ -37,7 +47,10 @@ export default class RegisterFormComponent implements OnInit {
     }
 
 
-    register() {
-        console.log(this.registerForm.value)
+    async register(): Promise<void> {
+        const data = this.registerForm.value;
+        const res = await this.apiService.login(data);
+        console.log(res)
     }
 }
+
