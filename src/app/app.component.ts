@@ -8,7 +8,7 @@ import { HeroDetailComponent } from './components/hero-detail.component';
   standalone: true,
   imports: [RouterOutlet, HeroListComponent, HeroDetailComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'regiset-form-tailwindcss';
